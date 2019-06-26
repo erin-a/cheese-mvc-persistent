@@ -38,9 +38,13 @@ public class CategoryController {
     //  interesting later on.
     @RequestMapping(value = "")
     public String index(Model model) {
-        model.addAttribute("Categories", categoryDao.findAll());
+        Iterable<Category>categories = categoryDao.findAll();
+        model.addAttribute("categories");
+       model.addAttribute("title", "Add Category");
         return "category/index";
     }
+
+
 
     // TODO 1.6
     //  Create an add handler within CategoryController with input parameter Model model.
@@ -52,9 +56,9 @@ public class CategoryController {
     //  at the controller level already). The handler should render the category/add template (we'll add this template
     //  in a moment).
     @RequestMapping(value="add", method = RequestMethod.GET)
-    public String add(Model model){
+    public String displayAddCategoryForm(Model model){
         model.addAttribute("title", "Add Category"); //trying to: Add the title "Add Category" to model as well.
-        model.addAttribute(new Category());
+        model.addAttribute("category", new Category());
         return "category/add";
     }
 
@@ -66,11 +70,13 @@ public class CategoryController {
     //          - Save the new Category object by calling categoryDao.save(category).
     //          - Redirect to the index handler for CategoryController by returning the string "redirect:".
     @RequestMapping(value="add",method = RequestMethod.POST)
-    public String add(Model model, @ModelAttribute @Valid Category category, Errors errors) {
+    public String processAddCategoryForm(Model model, @ModelAttribute @Valid Category newCategory, Errors errors) {
         if (errors.hasErrors()) {
-            model.addAttribute("titl", "Add Category");
+            model.addAttribute("title", "Add Category");
+            model.addAttribute(new Category());
             return "category/add";}
-        categoryDao.save(category);
+
+            categoryDao.save(newCategory);
             return "redirect:";
         }
 

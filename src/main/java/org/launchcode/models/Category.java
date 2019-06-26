@@ -23,8 +23,9 @@ public class Category {
     // It will only be used by Hibernate in the process of creating objects from data retrieved from the database.
     // 1b: A constructor that accepts a parameter to set name
 
+   // public Category () {} // default constructor - updated per in class demo
+
     public Category(String name) {
-        this(); // default constructor
         this.name = name;
     }
 
