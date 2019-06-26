@@ -27,7 +27,7 @@ public class CategoryController {
     // collections defined within categoryDao.
 
 
-    // TO DO 1.4 / 1.5A done?
+    // TODO 1.4 / 1.5A done?
     //  1.4 The index handler should correspond to the route "" (that is, the path /category),
     //  and it should retrieve the list of all categories. This is done via the categoryDao object: categoryDao.findAll()
     //  returns a collection (actually, an Iterable) of all Category objects managed by categoryDao. Use this snippet to
@@ -39,6 +39,7 @@ public class CategoryController {
     @RequestMapping(value = "")
     public String index(Model model) {
         model.addAttribute("Categories", categoryDao.findAll());
+        return "category/index";
     }
 
     // TODO 1.6
@@ -52,8 +53,8 @@ public class CategoryController {
     //  in a moment).
     @RequestMapping(value="add", method = RequestMethod.GET)
     public String add(Model model){
-        model.addAttribute(new Category());
         model.addAttribute("title", "Add Category"); //trying to: Add the title "Add Category" to model as well.
+        model.addAttribute(new Category());
         return "category/add";
     }
 
@@ -75,4 +76,4 @@ public class CategoryController {
 
 
     }
-}
+
