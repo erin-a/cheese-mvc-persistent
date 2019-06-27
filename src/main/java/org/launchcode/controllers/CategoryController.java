@@ -13,7 +13,7 @@ import org.springframework.web.bind.annotation.RequestMethod;
 import javax.validation.Valid;
 
 @Controller
-@RequestMapping
+@RequestMapping("category")
 public class CategoryController {
 
     // TODO 1.3 Adding Categories  done?
@@ -40,7 +40,7 @@ public class CategoryController {
     public String index(Model model) {
         Iterable<Category>categories = categoryDao.findAll();
         model.addAttribute("categories");
-       model.addAttribute("title", "Add Category");
+        model.addAttribute("title", "Categories");
         return "category/index";
     }
 

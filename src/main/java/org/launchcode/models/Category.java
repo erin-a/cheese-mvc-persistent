@@ -29,8 +29,8 @@ public class Category {
         this.name = name;
     }
 
-    public Category() { }
-
+    public Category() { } // default cons\structor for hibernate
+    //default void Category(){}
 
     public int getId() {
         return id;
