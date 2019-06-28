@@ -3,6 +3,7 @@ package org.launchcode.models;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.Id;
+import javax.persistence.OneToMany;
 import javax.validation.constraints.NotNull;
 import javax.validation.constraints.Size;
 
@@ -17,6 +18,11 @@ public class Category {
     @NotNull
     @Size(min=3, max=15)
     private String name;
+
+    //@OneToMany
+    //@JoinColumn(name = "category_id") // tells it which column on the cheese table should determine the cheeses that
+    // are part of this list - connects the category id to the cheese table
+    //private List<Cheese> cheeses = new ArrayList<>();
 
     //TODO 1.1: (done?)
     // 1a: Default (no-argument) constructor: This is required, and doesn't need a any code within its body.
@@ -43,4 +49,6 @@ public class Category {
     public void setName(String name) {
         this.name = name;
     }
+
+    //public List<Cheese> getCheeses() { return cheeses; }
 }

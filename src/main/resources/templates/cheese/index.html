@@ -22,7 +22,7 @@
     <tr th:each="cheese : ${cheeses}">
         <td th:text="${cheese.name}"></td>
         <td th:text="${cheese.description}"></td>
-        <td th:text="${cheese.type.name}"></td>
+        <td th:text="${cheese.type.name}"></td> <!-- video shows cheese.category.name instead of type - they removed type  // uses getters to access these values-->
     </tr>
 
 </table>

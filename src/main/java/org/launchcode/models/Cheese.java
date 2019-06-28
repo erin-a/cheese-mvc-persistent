@@ -3,6 +3,7 @@ package org.launchcode.models;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.Id;
+import javax.persistence.ManyToOne;
 import javax.validation.constraints.NotNull;
 import javax.validation.constraints.Size;
 
@@ -23,6 +24,9 @@ public class Cheese {
     @NotNull
     @Size(min=1, message = "Description must not be empty")
     private String description;
+
+    //@ManyToOne
+    //private Category category; //stores unique id of the category - primary key on category table becomes the foreign key on the cheese table
 
     private CheeseType type;
 

@@ -26,7 +26,6 @@ public class CategoryController {
     //This code would need to be added to each controller class that you want to have access to the persistent
     // collections defined within categoryDao.
 
-
     // TODO 1.4 / 1.5A done?
     //  1.4 The index handler should correspond to the route "" (that is, the path /category),
     //  and it should retrieve the list of all categories. This is done via the categoryDao object: categoryDao.findAll()
@@ -41,9 +40,9 @@ public class CategoryController {
         Iterable<Category>categories = categoryDao.findAll();
         model.addAttribute("categories");
         model.addAttribute("title", "Categories");
+        model.addAttribute("categories", categoryDao.findAll());
         return "category/index";
     }
-
 
 
     // TODO 1.6
@@ -76,7 +75,8 @@ public class CategoryController {
             model.addAttribute(new Category());
             return "category/add";}
 
-            categoryDao.save(newCategory);
+        //model.addAttribute("categories", categoryDao.findAll()); // adding a model here so you can pass that model to the /index for it to display, and in that model should include the list
+        categoryDao.save(newCategory);
             return "redirect:";
         }
 
