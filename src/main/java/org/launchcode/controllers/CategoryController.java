@@ -16,7 +16,7 @@ import javax.validation.Valid;
 @RequestMapping("category")
 public class CategoryController {
 
-    // TODO 1.3 Adding Categories  done?
+    // TO DOne 1.3 Adding Categories  done?
     @Autowired // there's a warning about using this this in instructions part 1
     private CategoryDao categoryDao; //This creates a private field categoryDao of type CategoryDao. This object
     // will be the mechanism with which we interact with objects stored in the database. Recall that Spring will do
@@ -26,7 +26,7 @@ public class CategoryController {
     //This code would need to be added to each controller class that you want to have access to the persistent
     // collections defined within categoryDao.
 
-    // TODO 1.4 / 1.5A done?
+    // TO DOne 1.4 / 1.5A done?
     //  1.4 The index handler should correspond to the route "" (that is, the path /category),
     //  and it should retrieve the list of all categories. This is done via the categoryDao object: categoryDao.findAll()
     //  returns a collection (actually, an Iterable) of all Category objects managed by categoryDao. Use this snippet to
@@ -45,7 +45,7 @@ public class CategoryController {
     }
 
 
-    // TODO 1.6
+    // TO DOne 1.6
     //  Create an add handler within CategoryController with input parameter Model model.
     //  It should create a new Category object using the default constructor and pass it into the view with key
     //  "category" (you can do this with the shorthand model.addAttribute(new Category()) ; note the omission of a
@@ -62,7 +62,7 @@ public class CategoryController {
     }
 
 
-    // TODO 1.7 Create another add handler that accepts POST requests at /category/add. Within this second add handler:
+    // TO DOne 1.7 Create another add handler that accepts POST requests at /category/add. Within this second add handler:
     //  - Determine whether or not there are any validation errors.
     //      - If there are, return the form at category/add
     //      - If the form submission is valid:
@@ -75,7 +75,6 @@ public class CategoryController {
             model.addAttribute(new Category());
             return "category/add";}
 
-        //model.addAttribute("categories", categoryDao.findAll()); // adding a model here so you can pass that model to the /index for it to display, and in that model should include the list
         categoryDao.save(newCategory);
             return "redirect:";
         }

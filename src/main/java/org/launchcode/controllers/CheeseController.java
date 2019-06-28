@@ -2,7 +2,7 @@ package org.launchcode.controllers;
 
 import org.launchcode.models.Category;
 import org.launchcode.models.Cheese;
-import org.launchcode.models.CheeseType;
+import org.launchcode.models.data.CategoryDao;
 import org.launchcode.models.data.CheeseDao;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
@@ -25,9 +25,9 @@ public class CheeseController {
     @Autowired  //
     private CheeseDao cheeseDao; // video doesn't have private on there
 
-    //@Autowired  // this means that springboot will create the class and the object and inject into the
+    @Autowired  // this means that springboot will create the class and the object and inject into the
     // controllers - this will result in this field having a non null value as a result
-    //CategoryDao categoryDao; // when any controller code runs, this field will have a reference to an object that
+    private CategoryDao categoryDao; // when any controller code runs, this field will have a reference to an object that
     // implements the categoryDao interface
 
     // Request path: /cheese
@@ -47,27 +47,25 @@ public class CheeseController {
     public String displayAddCheeseForm(Model model) {
         model.addAttribute("title", "Add Cheese");
         model.addAttribute(new Cheese());
-        model.addAttribute("cheeseTypes", CheeseType.values());
-        // video has this instead of the cheese types: model.addAttribute("categories", categoryDao.findAll(); and
-        // says this returns a list like object that contains all of the categories, this returns an iterable, so
-        // it can be looped over
+        model.addAttribute("category", categoryDao.findAll()); //TODO done? 2.1a update to remove cheesetype
+        //  this returns a list like object that contains all of the categories, this returns an iterable, so it can be looped over
         return "cheese/add";
     }
 
     // this processes the form request and creates a new cheese object
     @RequestMapping(value = "add", method = RequestMethod.POST)
     public String processAddCheeseForm(@ModelAttribute  @Valid Cheese newCheese,
-                                       Errors errors, Model model) { //video includes @RequestParam int categoryId
-        // between the errors and model
+                                       Errors errors, @RequestParam int categoryId, Model model) {
         if (errors.hasErrors()) {
             model.addAttribute("title", "Add Cheese");
-            // video: model.addAttribute("categories", categoryDao.findAll());
+            model.addAttribute("categories", categoryDao.findAll());
             return "cheese/add";
         }
 
         // this creates/finishes the creation of the cheese object by adding the category
-        //Category cat = categoryDao.findOne(categoryId); // this pulls the correct category based on the category ID
-        //newCheese.setCategory(cat); // sets the category of the new cheese to be the selected category
+        Category cat = categoryDao.findOne(categoryId); // this pulls the correct category based on the category ID
+        // - this sets the Category object to correspond to this ID by pulling it from the data layer
+        newCheese.setCategory(cat); // sets the category of the new cheese to be the selected category
         cheeseDao.save(newCheese); // ads the cheese to the database
         return "redirect:";
     }
