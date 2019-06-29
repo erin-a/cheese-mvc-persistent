@@ -1,0 +1,34 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org/">
+<head th:replace="fragments :: head"></head>
+<body class="container">
+<h1 th:text="${title}">Default Title</h1>
+
+<nav th:replace="fragments :: navigation"></nav>
+
+]<form method="post" style="max-width:600px;" th:object="${menu}"> <!-- th:object="${menu} binds the menu object to the
+ form - this gives us good validation features and sometimes allows us to generate the specific form input type from
+ the field properties of that object -->
+        <div class="form-group">
+            <label th:for="name">Name</label>
+            <input class="form-control" th:field="*{name}" /> <!-- this form has 1 field -->
+            <span th:errors="*{name}" class="error"></span>
+        </div>
+
+        <input type="submit" value="Create Menu" />
+    </form>
+
+    </body>
+    </html>
+
+    <!-- TO DOne 1.8:
+    In resources/templates/category/ create a new template, add.html. Within the template, create a form that uses the
+    category object that you passed in from the controller.
+
+    You'll need to bind the object to the form using th:object="${category}". And you should use the appropriate attributes
+    within the form: th:for, th:field, th:errors.
+
+    This is the same technique we've been using over the last couple of weeks.
+    -->
+
+<!-- -->

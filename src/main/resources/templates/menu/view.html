@@ -1,0 +1,32 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org/">
+<head th:replace="fragments :: head"></head>
+
+<body class="container">
+
+<h1 th:text="${title}">Default Title</h1>
+
+<nav th:replace="fragments :: navigation"></nav>
+
+       <ul>
+           <li th:each="cheese : ${cheeses}" th:text="${cheese.name}"></li>
+       </ul>
+
+    <p th:unless="${cheese.size()}"><i>There no cheeses in this menu. You should add some cheeses.</i></p>
+
+<p><a th:href="'/menu/add-item/' + ${menuId}">Click to Add a Cheese to this Menu</a></p>
+
+    <!--
+
+    TO DOne 1.5B done?
+     The handler should render the index.html template that you just created. This view should display an unordered
+     list (that is, a <ul>) of category names. The list will look a bit plain for now, but we will make it more
+     interesting later on.
+
+    TO DOne 1.9B
+        Within the category/index.html template, add a link to /category/add with
+        the text "Add Category". Place this link below the list.
+    -->
+
+</body>
+</html>

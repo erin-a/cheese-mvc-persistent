@@ -1,0 +1,44 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org/">
+<head th:replace="fragments :: head"></head>
+<body class="container">
+<h1 th:text="${title}">Default Title</h1>
+
+<nav th:replace="fragments :: navigation"></nav>
+
+<!-- we add the action on the form element because the url at which this form will be rendered will have the menu id as
+part of the url // often we leave off the action because the handlers are set up to post to the same url that the
+form is located (that's the default if the action is left off) -->
+<form method="post" th:object="${form}" action="/menu/add-item">
+        <div class="form-group">
+            <label th:for="cheeseId">Cheese</label>
+            <select name="cheeseId">  <!-- drop down (select) that is the only visible input that contains each cheese
+            in the system that the user may choose from in order to populate their menu  -->
+                <option th:each="cheese : *{cheeses}" <!-- this input allows the user to select an item and it will post
+                 the id of the particular item that they choose BUT we also need to know the menu id that they want to
+                 add this cheese too -->
+                        th:text="${cheese.name}"
+                        th:value="${cheese.id}"></option>
+                <span th:errors="*{cheeseId}" class="error"></span> <!-- Part 2 Errata note -->
+            </select>
+        </div>
+
+        <input type="hidden" name="menuId" th:value="*{menu.id}" /> <!-- This posts the the specific menu id that the
+        user has already selected they want to add the cheese too  -->
+        <input type="submit" value="Add Item to Menu" />
+    </form>
+
+    </body>
+    </html>
+
+    <!-- TO DOne 1.8:
+    In resources/templates/category/ create a new template, add.html. Within the template, create a form that uses the
+    category object that you passed in from the controller.
+
+    You'll need to bind the object to the form using th:object="${category}". And you should use the appropriate attributes
+    within the form: th:for, th:field, th:errors.
+
+    This is the same technique we've been using over the last couple of weeks.
+    -->
+
+<!-- -->
