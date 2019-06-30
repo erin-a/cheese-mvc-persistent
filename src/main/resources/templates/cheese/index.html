@@ -22,11 +22,8 @@
     <tr th:each="cheese : ${cheeses}">
         <td th:text="${cheese.name}"></td>
         <td th:text="${cheese.description}"></td>
-        <td th:text="${cheese.category}"></td> <!-- uses getters to access these values
-          //had to update those also, cheese.category.name isn't working, tried getName and a lot of other things,
-          can't get it to pull
-
-           TODO need to get it to pull cheese category name-->
+        <td th:text="${cheese.category.name}"></td> <!-- uses getters to access these values
+          -->
     </tr>
 
 </table>
