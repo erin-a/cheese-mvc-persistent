@@ -48,7 +48,7 @@ public class CheeseController {
     public String displayAddCheeseForm(Model model) {
         model.addAttribute("title", "Add Cheese");
         model.addAttribute(new Cheese());
-        model.addAttribute("category", categoryDao.findAll()); //TODO done? 2.1a update to remove cheesetype
+        model.addAttribute("categories", categoryDao.findAll()); //TODO done? 2.1a update to remove cheesetype
         //  this returns a list like object that contains all of the categories, this returns an iterable, so it can be looped over
         return "cheese/add";
     }
