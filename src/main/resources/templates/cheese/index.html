@@ -22,8 +22,11 @@
     <tr th:each="cheese : ${cheeses}">
         <td th:text="${cheese.name}"></td>
         <td th:text="${cheese.description}"></td>
-        <td th:text="${cheese.category.name}"></td> <!-- video shows cheese.category.name instead of type - they r
-        removed type  // uses getters to access these values  //had to update those also -->
+        <td th:text="${cheese.category}"></td> <!-- uses getters to access these values
+          //had to update those also, cheese.category.name isn't working, tried getName and a lot of other things,
+          can't get it to pull
+
+           TODO need to get it to pull cheese category name-->
     </tr>
 
 </table>
