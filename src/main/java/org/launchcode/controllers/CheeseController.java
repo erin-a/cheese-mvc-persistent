@@ -14,6 +14,7 @@ import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RequestParam;
 
 import javax.validation.Valid;
+import java.util.List;
 
 /**
  * Created by LaunchCode
@@ -92,9 +93,9 @@ public class CheeseController {
     // ID via query parameter)
 
     //@RequestMapping(value = "category", method=RequestMethod.GET)
-    //public String category(Model model, RequestParam int id); //guessing this should this be cheeseId instead of id
+   // public String category(Model model, RequestParam int cheeseId) //guessing this should this be cheeseId instead of id
 
-    //Category cat = categoryDao.findOne(id); // when this method is called this finds the specific id of the category that was passed in
+    //Category cat = categoryDao.findOne(cheeseId); // when this method is called this finds the specific id of the category that was passed in
     //List<Cheese> cheeses = cat.getCheeses(); // this accesses that category's list of cheeses via Hibernate to populate the list
     //model.addAttribute("cheese", cheeses); // adds the attributes to the model
     //model.addAttribute("title", "Cheeses in Category: " + cat.getName()); //renders list

@@ -31,7 +31,7 @@ public class MenuController {
         return "menu/index";
     }
 
-    // adds a new menu (empty to start)
+    // adds a new menu (empty to start)  //displayAddMenuFrom
     @RequestMapping(value="add", method=RequestMethod.GET)
     public String add(Model model){
             model.addAttribute("title", "Add Menu"); // adds the title
@@ -39,7 +39,7 @@ public class MenuController {
             return "menu/add";
     }
 
-    // handler that adds a new menu
+    // handler that adds a new menu  //processAddMenuForm
     @RequestMapping(value = "add", method=RequestMethod.POST)
     // this takes a model attribute that binds the menu object to this handler
     // remember that the erros object has to directly follow the object the model that the errors should be associated with
@@ -54,7 +54,7 @@ public class MenuController {
             // the id for that item when it adds it to the database
         }
 
-    //this handler display the contents of a single menu via get request
+    //this handler display the contents of a single menu via get request // displaySingleMenu
     @RequestMapping(value="view/{menuId}", method = RequestMethod.GET)
     public String viewMenu(Model model, @PathVariable int menuId){ //we use the path variable to get the particular id
         // of the menu we want to display and that is inserted into the curly brackets menuId in the request mapping
@@ -66,11 +66,12 @@ public class MenuController {
         return "menu/view";
     }
 
+    // displayAddMenuItem
     //diplays the form, the path variable annotation in the previous handler which identified which menu to add items to
     @RequestMapping(value="add-item/{menuId}", method=RequestMethod.GET)
     public String addItem(Model model, @PathVariable int menuId) {
 
-        Menu menu = menuDao.findAll(menuId); //fetches the menu we want to add items to via the identifier (menuId) out of the database
+        Menu menu = menuDao.findOne(menuId); //fetches the menu we want to add items to via the identifier (menuId) out of the database
         AddMenuItemForm form = new AddMenuItemForm( //need to create this AddMenuItemsForm object - we will create a
                 // model class specifically to render or process a form - this is a handy way to do validation when
                 // the form you're looking at doesn't correspond with a specific class otherwise. This isn't creating a
@@ -87,7 +88,7 @@ public class MenuController {
         return "menu/add-item";
     }
 
-    // processes the form
+    // processes the form //processAddMenuItem
     @RequestMapping(value = "add-item", method=RequestMethod.POST)
     public String addItem(Model model,
                           @ModelAttribute @Valid AddMenuItemForm form, //takes in an AddMenutItemForm (object), it's
@@ -105,6 +106,8 @@ public class MenuController {
         // cheese with that particular id and then interface returns that id to us in the handler
         Menu theMenu = menuDao.findOne(form.getMenuId()); // do the same thing for the menu - like we did for cheese -
         // we retrieve the object associated with their respective Dao (data access objects)
+
+
         theMenu.addItem(theCheese); //we add the item into the menu
         menuDao.save(theMenu); //this pushes these changes to the database object, this is required to get something
         // into the database in a persistent way - it saves it - so it saves the updated status/information for an
