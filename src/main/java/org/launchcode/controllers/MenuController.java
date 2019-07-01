@@ -69,7 +69,7 @@ public class MenuController {
         // value to configure the path
         Menu menu = menuDao.findOne(menuId); // this fetches the value of the particular menu we are looking at
         model.addAttribute(menu);
-        model.addAttribute("title", "My Cheeses: ");
+        model.addAttribute("title", "My Cheeses: " + menu.getName());
         //model.addAttribute("title", menu.getName()); //adds attribute - page title which is set to menu name
         //model.addAttribute("cheeses", menu.getCheeses()); //adds attribute - all the cheeses that are part of that menu
         //model.addAttribute("menu", menu.getId()); // passes in the specific menu's id -

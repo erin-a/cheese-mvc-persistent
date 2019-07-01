@@ -8,13 +8,13 @@
 
 <nav th:replace="fragments :: navigation"></nav>
 
-<!-- <p th:unless="${menus} and ${menus.size()}">no menus yet :(</p> -->
+<p th:unless="${menus} and ${menu.size()}">no menus yet :(</p>
 
        <ul>
            <!-- this loops through the list of menus and for each one it provides a link to that menu view-->
            <li th:each="menu : ${menus}">
                <!-- This builds the url by taking this string and adding the menu.id -->
-               <a th:href="'/menu/view?id=' + ${menu.id}" th:text ="${menu.name}"></a>
+               <a th:href="'/menu/view?id=' + ${menus.id}" th:text ="${menu.title}"></a>
            </li>
        </ul>
 
