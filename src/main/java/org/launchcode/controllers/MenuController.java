@@ -6,6 +6,7 @@ import org.launchcode.models.data.CheeseDao;
 import org.launchcode.models.data.MenuDao;
 import org.launchcode.models.forms.AddMenuItemForm;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.validation.Errors;
 import org.springframework.web.bind.annotation.ModelAttribute;
@@ -15,6 +16,8 @@ import org.springframework.web.bind.annotation.RequestMethod;
 
 import javax.validation.Valid;
 
+@Controller //added per instructions in part 3 "The MenuController Class and Views" section
+@RequestMapping(value ="menu") //added per instructions in part 3 "The MenuController Class and Views" section
 public class MenuController {
 
     @Autowired
@@ -42,7 +45,7 @@ public class MenuController {
     // handler that adds a new menu  //processAddMenuForm
     @RequestMapping(value = "add", method=RequestMethod.POST)
     // this takes a model attribute that binds the menu object to this handler
-    // remember that the erros object has to directly follow the object the model that the errors should be associated with
+    // remember that the errors object has to directly follow the object the model that the errors should be associated with
     public String add(Model model, @ModelAttribute @Valid Menu menu, Errors errors) {//
             if (errors.hasErrors()) {
                 model.addAttribute("title", "Add Menu");
@@ -55,6 +58,11 @@ public class MenuController {
         }
 
     //this handler display the contents of a single menu via get request // displaySingleMenu
+    // TODO 3.? Within the handler, retrieve the Menu object with the given ID using menuDao.
+    //  Pass the given menu into the view.
+    //  In the video lesson demonstrating this part of the application, the name, ID, and list of cheeses are
+    //  each passed in separately to the view. Passing in the full Menu object, as instructed here, is more efficient.
+    //
     @RequestMapping(value="view/{menuId}", method = RequestMethod.GET)
     public String viewMenu(Model model, @PathVariable int menuId){ //we use the path variable to get the particular id
         // of the menu we want to display and that is inserted into the curly brackets menuId in the request mapping
@@ -65,6 +73,8 @@ public class MenuController {
         model.addAttribute("menu", menu.getId()); // passes in the specific menu's id -
         return "menu/view";
     }
+
+
 
     // displayAddMenuItem
     //diplays the form, the path variable annotation in the previous handler which identified which menu to add items to

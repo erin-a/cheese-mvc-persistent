@@ -23,6 +23,7 @@ public class AddMenuItemForm {
     public AddMenuItemForm() {} //a default constructor (needed to for model binding to work)
 
     //this constructor takes in a collection of cheeses and a menu and creates a new form
+    // constructor that accepts and sets values for menu and cheeses
     public AddMenuItemForm(Iterable<Cheese> cheeses, Menu menu) {
         this.cheeses = cheeses;
         this.menu = menu;

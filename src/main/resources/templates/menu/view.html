@@ -8,25 +8,24 @@
 
 <nav th:replace="fragments :: navigation"></nav>
 
-       <ul>
-           <li th:each="cheese : ${cheeses}" th:text="${cheese.name}"></li>
+<p th:unless="${cheese.size()}"><i>There no cheeses in this menu. You should add some cheeses.</i></p>
+
+    <ul>
+           <li th:each="cheese : ${cheeses}" th:text="${cheese.name}"></li> <!--should it loop through cheese in menu.cheese instead of cheese in cheeses? -->
        </ul>
 
-    <p th:unless="${cheese.size()}"><i>There no cheeses in this menu. You should add some cheeses.</i></p>
+<p><a th:href="'/menu/add-item/' + ${menu.id}">Click to Add a Cheese to this Menu</a></p> <!-- had menuId from video, menu.id in instructions    -->
 
-<p><a th:href="'/menu/add-item/' + ${menuId}">Click to Add a Cheese to this Menu</a></p>
+    <!-- The viewMenu method should render the view.html template. Let's build that template now.
 
-    <!--
+Create view.html in the folder that contains your other templates associated with this controller. It should display the name of the menu as the page title. It should display a list of menu items in a <ul> element. Note that you'll need to loop over menu.cheeses (here we assume you've passed in the menu with the attribute name menu; if not, modify accordingly).
 
-    TO DOne 1.5B done?
-     The handler should render the index.html template that you just created. This view should display an unordered
-     list (that is, a <ul>) of category names. The list will look a bit plain for now, but we will make it more
-     interesting later on.
+Below the list, add the following link:
 
-    TO DOne 1.9B
-        Within the category/index.html template, add a link to /category/add with
-        the text "Add Category". Place this link below the list.
-    -->
+<p><a th:href="'/menu/add-item/' + ${menu.id}">Add Cheese</a></p>
+This will link to a form that we are about to create.
+
+   -->
 
 </body>
 </html>
