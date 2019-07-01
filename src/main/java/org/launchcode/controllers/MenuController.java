@@ -68,9 +68,11 @@ public class MenuController {
         // of the menu we want to display and that is inserted into the curly brackets menuId in the request mapping
         // value to configure the path
         Menu menu = menuDao.findOne(menuId); // this fetches the value of the particular menu we are looking at
-        model.addAttribute("title", menu.getName()); //adds attribute - page title which is set to menu name
-        model.addAttribute("cheeses", menu.getCheeses()); //adds attribute - all the cheeses that are part of that menu
-        model.addAttribute("menu", menu.getId()); // passes in the specific menu's id -
+        model.addAttribute(menu);
+        model.addAttribute("title", "My Cheeses: ");
+        //model.addAttribute("title", menu.getName()); //adds attribute - page title which is set to menu name
+        //model.addAttribute("cheeses", menu.getCheeses()); //adds attribute - all the cheeses that are part of that menu
+        //model.addAttribute("menu", menu.getId()); // passes in the specific menu's id -
         return "menu/view";
     }
 
@@ -78,7 +80,7 @@ public class MenuController {
 
     // displayAddMenuItem
     //diplays the form, the path variable annotation in the previous handler which identified which menu to add items to
-    @RequestMapping(value="add-item/{menuId}", method=RequestMethod.GET)
+    @RequestMapping(value="add-item", method = RequestMethod.GET) //was value="add-item/{menuId}"
     public String addItem(Model model, @PathVariable int menuId) {
 
         Menu menu = menuDao.findOne(menuId); //fetches the menu we want to add items to via the identifier (menuId) out of the database
@@ -99,7 +101,7 @@ public class MenuController {
     }
 
     // processes the form //processAddMenuItem
-    @RequestMapping(value = "add-item", method=RequestMethod.POST)
+    @RequestMapping(value = "add-item", method = RequestMethod.POST)
     public String addItem(Model model,
                           @ModelAttribute @Valid AddMenuItemForm form, //takes in an AddMenutItemForm (object), it's
                           // using model binding to build that object up for us based on the submitted form data

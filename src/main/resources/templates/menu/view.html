@@ -8,10 +8,10 @@
 
 <nav th:replace="fragments :: navigation"></nav>
 
-<p th:unless="${cheese.size()}"><i>There no cheeses in this menu. You should add some cheeses.</i></p>
+<p th:unless="${menu.cheeses.size()}"><i>There no cheeses in this menu. You should add some cheeses.</i></p>
 
     <ul>
-           <li th:each="cheese : ${cheeses}" th:text="${cheese.name}"></li> <!--should it loop through cheese in menu.cheese instead of cheese in cheeses? -->
+           <li th:each="cheese : ${menu.cheeses}" th:text="${cheese.name}"></li>
        </ul>
 
 <p><a th:href="'/menu/add-item/' + ${menu.id}">Click to Add a Cheese to this Menu</a></p> <!-- had menuId from video, menu.id in instructions    -->
