@@ -29,7 +29,7 @@ public class MenuController {
     @RequestMapping(value ="")
     public String index(Model model) {
         model.addAttribute("title", "Menus"); //adds a title attribute that says "Menus"
-        model.addAttribute("menus", "menuDao.findAll()"); //shows a list of all available
+        model.addAttribute("menus", menuDao.findAll()); //shows a list of all available
         // menus by passing (under the attribute name menus) the result of calling menuDao.findAll()
         return "menu/index";
     }

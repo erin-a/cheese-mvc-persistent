@@ -14,9 +14,7 @@ form is located (that's the default if the action is left off) -->
             <label th:for="cheeseId">Cheese</label>
             <select name="cheeseId">  <!-- drop down (select) that is the only visible input that contains each cheese
             in the system that the user may choose from in order to populate their menu  -->
-                <option th:each="cheese : *{cheeses}" <!-- this input allows the user to select an item and it will post
-                 the id of the particular item that they choose BUT we also need to know the menu id that they want to
-                 add this cheese too -->
+                <option th:each="cheese : *{cheeses}"
                         th:text="${cheese.name}"
                         th:value="${cheese.id}"></option>
                 <span th:errors="*{cheeseId}" class="error"></span> <!-- Part 2 Errata note -->
