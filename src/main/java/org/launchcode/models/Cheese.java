@@ -63,12 +63,12 @@ public class Cheese {
     }
 
 
-    //TODO done? 2.1c update to remove cheesetype
+    //TODOne done? 2.1c update to remove cheesetype
     public Category getCategory() {
         return category;
     }
 
-    //TODO done? 2.1b update to remove cheesetype
+    //TODOne done? 2.1b update to remove cheesetype
     public void setCategory(Category category) {
         this.category = category;
     }

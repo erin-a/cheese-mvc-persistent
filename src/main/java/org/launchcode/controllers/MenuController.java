@@ -80,7 +80,7 @@ public class MenuController {
 
     // displayAddMenuItem
     //diplays the form, the path variable annotation in the previous handler which identified which menu to add items to
-    @RequestMapping(value="add-item", method = RequestMethod.GET) //was value="add-item/{menuId}"
+    @RequestMapping(value="add-item/{menuId}", method = RequestMethod.GET) //was value="add-item/"   have gone back and forth, doesn't change anything
     public String addItem(Model model, @PathVariable int menuId) {
 
         Menu menu = menuDao.findOne(menuId); //fetches the menu we want to add items to via the identifier (menuId) out of the database
@@ -106,9 +106,10 @@ public class MenuController {
                           @ModelAttribute @Valid AddMenuItemForm form, //takes in an AddMenutItemForm (object), it's
                           // using model binding to build that object up for us based on the submitted form data
                           // @valid validates the form data to confirm that this should be a valid object
-                          Errors errors) { //allows us to check if the validation caught any errors
+                          Errors errors, Menu menu) { //allows us to check if the validation caught any errors
         if (errors.hasErrors()) { //first thing in the method, checks for errors
             model.addAttribute("form", form);  //if errors, submit back to the same form with error messages
+            // model.addAttribute("title", "Add item to the " + menu.getName() + "menu." );  // jane told me to add this it didn't fix anything
             return "menu/add-item";
         }
 
@@ -125,7 +126,7 @@ public class MenuController {
         // into the database in a persistent way - it saves it - so it saves the updated status/information for an
         // existing item
 
-        return "redirect:/menu/view" + theMenu.getId(); //returns the menu view for the menu in question and displays it
+        return "redirect:/view" + theMenu.getId(); //returns the menu view for the menu in question and displays it
         // with the new item
     }
 }

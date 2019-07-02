@@ -29,7 +29,15 @@ public class AddMenuItemForm {
         this.menu = menu;
     }
 
-    //acessors needed for this form are below
+    public Iterable<Cheese> getCheeses() {
+        return cheeses;
+    }
+
+    public Menu getMenu() {
+        return menu;
+    }
+
+    //accessors needed for this form are below
     public int getMenuId() {
         return menuId;
     }
@@ -46,11 +54,4 @@ public class AddMenuItemForm {
         this.cheeseId = cheeseId;
     }
 
-    public Iterable<Cheese> getCheeses() {
-        return cheeses;
-    }
-
-    public Menu getMenu() {
-        return menu;
-    }
 }

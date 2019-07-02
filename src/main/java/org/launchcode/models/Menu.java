@@ -19,7 +19,6 @@ public class Menu {
     @Size(min = 3, max = 25)
     private String name;
 
-
     @ManyToMany //this class menu is related to the cheese class by a many to many relationship, and that this
     // collection (list of cheese objects) should be one side of how that relationship is mapped - so for a given
     // menu object, this particular cheeses on it
