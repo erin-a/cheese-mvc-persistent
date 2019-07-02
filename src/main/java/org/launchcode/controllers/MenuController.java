@@ -126,7 +126,7 @@ public class MenuController {
         // into the database in a persistent way - it saves it - so it saves the updated status/information for an
         // existing item
 
-        return "redirect:/view" + theMenu.getId(); //returns the menu view for the menu in question and displays it
+        return "redirect:view/" + theMenu.getId(); //returns the menu view for the menu in question and displays it
         // with the new item
     }
 }
